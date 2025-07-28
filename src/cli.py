@@ -2,11 +2,13 @@ import typer
 import subprocess
 from pathlib import Path
 
-app = typer.Typer(help="Mom voice bot CLI")
+app = typer.Typer(help="ChatBot voice bot CLI")
 
 
 @app.command()
-def ocr(input_dir: str = "data/raw_images", out: str = "data/processed/mom_raw.jsonl"):
+def ocr(
+    input_dir: str = "data/raw_images", out: str = "data/processed/chatbot_raw.jsonl"
+):
     subprocess.run(
         [
             "python",
@@ -22,8 +24,8 @@ def ocr(input_dir: str = "data/raw_images", out: str = "data/processed/mom_raw.j
 
 @app.command()
 def clean(
-    inp: str = "data/processed/mom_raw.jsonl",
-    out: str = "data/processed/mom_clean.jsonl",
+    inp: str = "data/processed/chatbot_raw.jsonl",
+    out: str = "data/processed/chatbot_clean.jsonl",
 ):
     subprocess.run(
         ["python", "src/clean_messages.py", "--input_file", inp, "--output_file", out],
@@ -33,8 +35,8 @@ def clean(
 
 @app.command()
 def vector(
-    inp: str = "data/processed/mom_clean.jsonl",
-    persist: str = "data/processed/chroma_mom",
+    inp: str = "data/processed/chatbot_clean.jsonl",
+    persist: str = "data/processed/chroma_chatbot",
 ):
     subprocess.run(
         [
@@ -51,7 +53,7 @@ def vector(
 
 @app.command()
 def chat_prompt(
-    vector_dir: str = "data/processed/chroma_mom",
+    vector_dir: str = "data/processed/chroma_chatbot",
     model_path: str = "models/qwen2-7b-instruct.gguf",
 ):
     subprocess.run(
@@ -69,9 +71,9 @@ def chat_prompt(
 
 @app.command()
 def finetune(
-    jsonl: str = "data/processed/mom_clean.jsonl",
+    jsonl: str = "data/processed/chatbot_clean.jsonl",
     base_model: str = "Qwen/Qwen2-7B-Instruct",
-    out: str = "data/models/lora/qwen2-7b-mom",
+    out: str = "data/models/lora/qwen2-7b-chatbot",
 ):
     subprocess.run(
         [
@@ -91,8 +93,8 @@ def finetune(
 @app.command()
 def chat_lora(
     base_model: str = "Qwen/Qwen2-7B-Instruct",
-    lora_dir: str = "data/models/lora/qwen2-7b-mom",
-    vector_dir: str = "data/processed/chroma_mom",
+    lora_dir: str = "data/models/lora/qwen2-7b-chatbot",
+    vector_dir: str = "data/processed/chroma_chatbot",
 ):
     subprocess.run(
         [

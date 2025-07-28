@@ -12,7 +12,7 @@ import argparse
 def extract_left_half_text(img_path: str, left_ratio: float = 0.55) -> str:
     """
     Very simple heuristic:
-    - Assume your mom's messages are on the left of each screenshot.
+    - Assume your chatbot's messages are on the left of each screenshot.
     - Crop left_ratio width of the image and OCR that region.
     For higher accuracy, you can later segment bubbles by color/contour.
     """
@@ -39,14 +39,14 @@ def process_images(input_dir: str, output_file: str, min_chars: int = 5):
     with open(output_file, "w", encoding="utf-8") as f:
         for r in records:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    print(f"Saved {len(records)} mom messages to {output_file}")
+    print(f"Saved {len(records)} chatbot messages to {output_file}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_dir", type=str, default="data/raw_images")
+    parser.add_argument("--input_file", type=str, default="data/raw_images")
     parser.add_argument(
-        "--output_file", type=str, default="data/processed/mom_raw.jsonl"
+        "--output_file", type=str, default="data/processed/chatbot_raw.jsonl"
     )
     args = parser.parse_args()
     process_images(args.input_dir, args.output_file)

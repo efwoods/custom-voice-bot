@@ -11,7 +11,7 @@ def build_vectorstore(input_file: str, persist_dir: str):
     texts = []
     metadatas = []
     with open(input_file, "r", encoding="utf-8") as f:
-        for line in tqdm(f, desc="Loading mom messages"):
+        for line in tqdm(f, desc="Loading chatbot messages"):
             o = json.loads(line)
             texts.append(o["text"])
             metadatas.append({k: v for k, v in o.items() if k != "text"})
@@ -32,8 +32,10 @@ def build_vectorstore(input_file: str, persist_dir: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--input_file", type=str, default="data/processed/mom_clean.jsonl"
+        "--input_file", type=str, default="data/processed/chatbot_clean.jsonl"
     )
-    parser.add_argument("--persist_dir", type=str, default="data/processed/chroma_mom")
+    parser.add_argument(
+        "--persist_dir", type=str, default="data/processed/chroma_chatbot"
+    )
     args = parser.parse_args()
     build_vectorstore(args.input_file, args.persist_dir)
