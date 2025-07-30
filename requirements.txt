@@ -26,3 +26,4 @@ opencv-python
 pytesseract
 matplotlib
 faiss-cpu
+llama_api_client

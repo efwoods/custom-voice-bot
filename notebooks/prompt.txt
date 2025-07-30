@@ -1,0 +1,1 @@
+Please respond in valid json. There are chatbubbles on the left in grey from the recipient. There are colored chatbubbles on the right of the image from the sender. Please return json of the text within the bubbles that also identifies who was saying what and keep the messages in the order that they appear in the original dialogue in the image.
