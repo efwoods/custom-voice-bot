@@ -1,0 +1,13 @@
+transformers 
+datasets 
+accelerate 
+bitsandbytes 
+peft 
+langchain 
+chromadb 
+sentence-transformers 
+scikit-learn 
+torch
+tensorflow
+tf-keras
+triton
