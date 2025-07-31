@@ -27,3 +27,9 @@ pytesseract
 matplotlib
 faiss-cpu
 llama_api_client
+
+langchain
+chromadb
+huggingface_hub
+sentence-transformers
+accelerate
