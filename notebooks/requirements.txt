@@ -11,3 +11,6 @@ torch
 tensorflow
 tf-keras
 triton
+langchain-community
+numpy==1.26.5
+fsspec[http]<=2024.6.1
